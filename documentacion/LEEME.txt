@@ -1,0 +1,42 @@
+En el visor se van a manejar distintas gráficas 
+
+por ejemplo promedio de una pregunta determinada entonces para agregar una nueva informacion al visor seguir los siguientes pasos 
+
+
+1) crear contenedor div (en row class no container class) en index.php para que se pueda meter la información ahí
+
+2) en la carpeta "aplications/visor" agregar una clase con el nombre de lo que hace la nueva informacion 
+    ejemplo PromedioPregunta1.class.php
+    
+3) en la clase implementar las funciones 
+    function executeConsult($params, $con)
+    
+    function getResponseType()
+    
+    function postProcess($result)
+    
+    
+    las últimas 2 dejarlas como están en aplications/visor/TotalEncuestas.class.php por que esas definen el response y lo que
+    se hace después de hacer la petición
+    
+    el método execute consult es el mas importante desde ahí se restorna el array dele resultado que el json del index.php va a leer
+    
+4) (por ahora) crear en scripts/base.js la función que ejecuta el post para obtener la repuesta, usar como ejemplo la función hacerPeticion() que esta
+    en ese archivo, también está documentada, (importante el parametro "destino" siempre debe ir) el parametro destino define que información extrae cada 
+     post por ejemplo promedio_pregunta_1
+     
+     si a la funcion se le pone de nombre cargarPromedioPregunta1() entonces debe llamarse después de  " hacerPeticion();" linea8 de la manera
+     cargarPromedioPregunta1();
+
+5) En el archivo core/routing/ResponseDispatcher.class.php linea 22 en la sección "switch ($this->processedParams['destino'])" agregar 
+  el destino que definió en el anterior javascritp, junto a la clase que por ejemplo 
+    case: "promedio_pregunta_1"
+        $attendant = new PromedioPregunta1.class.php();
+        
+___________________________________
+en esta misma carpeta hay un archivo frisby_dev.sql por ahora es solo una tabla pero cambiará.
+
+
+___________________________-
+como ejemplo prueba a llenar encuestas a mano dentro de la bd  y luego haces la función para hallar el promedio de alguna de las preguntas
+    

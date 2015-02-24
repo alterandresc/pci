@@ -1,0 +1,52 @@
+
+1)para agregar una nueva gráfica agregar el contenedor de la gráfica dentro de el div dashboard content
+
+
+ <!-- Grafica 1-->
+<div class="row">
+        <h4>Titulo de la gráfica</h4>
+        <h4>Subtitulo si hay</h4>
+        <div class="col-md-18">
+                <div id="chart_div_10"></div>
+        </div>
+</div><!-- Grafica 1 -->
+<hr />
+
+IMPORTANTE MANTENER LA IDENTACIÓN!!
+
+"chart_div_10" hace referencia al div del chart 1 así que si se va a colocar un div para la gráfica 3 será chart_div_30
+
+2) ir a https://developers.google.com/chart/interactive/docs/gallery?hl=es y buscar la grafica que se necesita 
+
+3) en scripts/js_charts/ crear un archivo javascritp con el numero de la gr´afica "chart_10.js"
+  
+  y por dentro de este definir la funcion drawChart10() donde el numero corresponde al numero de la gráfica
+
+  function drawChart10() {
+        
+        var options = {
+          width: 400, height: 350,
+          redFrom: 0, redTo:70,
+          yellowFrom:70, yellowTo: 95,
+          greenFrom:95, greenTo: 100,
+          minorTicks: 5,
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div_10'));
+        chart.draw(data, options);
+        
+      }
+
+      seguir las instrucciones que están en scripts/js_charts/char_10.js
+      
+4)  en index.php hay una sección para importar los scripts, importar el scritp creado debajo de la linea 
+        <!-- importar los scripts de las gráficas aqui -->
+        
+        está el ejemplo dele chart_10 ahí
+        
+5) en el archivo scripts/calls.js llamar la funcion que se declaro drawChart10();
+        
+5) probar que funcione :P
+   
+
+
